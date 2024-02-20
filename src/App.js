@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import {useNavigate} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let navigate = useNavigate();
+    const onClick = () => {
+        console.log("hello")
+        navigate("/home");
+    }
+
+    console.log(process.env.REACT_APP_MY_SECRET_KEY);
+    return (
+        <div className={"relative flex flex-col"}>
+            <div className={"bg-amber-600 w-full"}>
+                {process.env.MY_SECRET_KEY}
+            </div>
+        </div>
+    );
 }
 
 export default App;
