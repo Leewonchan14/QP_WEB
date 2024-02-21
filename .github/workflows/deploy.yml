@@ -29,5 +29,5 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_KEY }}
           source: 'build'
-          target: '/static'
+          target: '/home/ubuntu/static'
           rm: true
