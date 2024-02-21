@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_KEY }}
           # build 안 모든 파일을 EC2로 전송
-          source: ./build/*
+          source: "build/*"
           target: /home/ubuntu/static
           strip-components: 1
           rm: true
