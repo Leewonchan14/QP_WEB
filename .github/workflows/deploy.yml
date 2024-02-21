@@ -13,7 +13,6 @@ jobs:
 
       - name: Setup .env
         run: |
-          ls -al
           echo "${{ secrets.DOT_ENV }}" > .env
 
       - uses: actions/setup-node@v4
@@ -33,4 +32,4 @@ jobs:
           # build 안 모든 파일을 EC2로 전송
           source: build/*
           target: /home/ubuntu/static/
-          strip-components: 1
+          strip_components: 1
