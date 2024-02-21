@@ -11,6 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup .env
+        run: echo "${{ secrets.DOT_ENV }}" > .env
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
 
