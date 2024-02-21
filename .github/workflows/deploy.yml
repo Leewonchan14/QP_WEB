@@ -1,7 +1,8 @@
 name: Deploy
 on:
-  release:
-    types: [ created ]
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
@@ -25,9 +26,9 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
         with:
-            host: ${{ secrets.EC2_HOST }}
-            username: ${{ secrets.EC2_USERNAME }}
-            password: ${{ secrets.EC2_KEY }}
-            source: 'build'
-            target: '/static'
-            rm: true
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          password: ${{ secrets.EC2_KEY }}
+          source: 'build'
+          target: '/static'
+          rm: true
