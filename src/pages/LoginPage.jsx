@@ -26,7 +26,7 @@ function LoginPage({}) {
     }
 
     return (
-        <OrangeBox>
+        <OrangeBox className={"border-[4rem]"}>
             <div className={"loginPageStyle relative"}>
                 <img draggable="false" src={Xlogo} alt={""} onClick={() => {
                     navigate("/");

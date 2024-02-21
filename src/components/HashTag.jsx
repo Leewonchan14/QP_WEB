@@ -2,7 +2,7 @@ import React from 'react';
 
 function HashTagList({tags}) {
     return (
-        <div className={"flex"}>
+        <div className={"flex text-lg"}>
             {tags.map((tag, index) => {
                 return <HashTag key={index} tag={tag}/>
             })}

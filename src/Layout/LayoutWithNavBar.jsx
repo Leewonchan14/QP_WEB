@@ -10,14 +10,16 @@ function LayoutWithNavBar({...rest}) {
     return (
         <>
             <NavBar/>
-            <div className={"relative w-full pl-60 pr-60"}>
-                <div className={"relative w-full h-full "
-                 + (isModalOpen ? "" : "hidden")}>
-                    <SearchModal/>
-                </div>
-                <div className={"w-full " +
-                    " " + (isModalOpen ? "hidden" : "")}>
-                    <Outlet/>
+            <div className={"flex justify-center"}>
+                <div className={"w-[80rem] mx-10"}>
+                    <div className={"relative w-full h-full "
+                        + (isModalOpen ? "" : "hidden")}>
+                        <SearchModal/>
+                    </div>
+                    <div className={"w-full mb-20 " +
+                        " " + (isModalOpen ? "hidden" : "")}>
+                        <Outlet/>
+                    </div>
                 </div>
             </div>
         </>

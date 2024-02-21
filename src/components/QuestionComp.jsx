@@ -22,15 +22,14 @@ function QuestionGridList({questionState}) {
     console.log(width);
     if (width < 1200) {
         gridColClass = "grid-cols-2";
-        if (width < 768) {
+        if (width < 550) {
             gridColClass = "grid-cols-1";
         }
-    } else{
+    } else {
         gridColClass = "grid-cols-3";
     }
 
     return <>
-        <div className={"mb-8 flex justify-center text-2xl font-bold"}>총 {listSize}개의 질문이 있습니다.</div>
         <div className={`grid gap-2 ${gridColClass}`}>
             {questions.map((question, index) => {
                 return <QuestionComp key={index} question={question}/>
@@ -69,19 +68,16 @@ function QuestionComp({question}) {
     }
 
     return (
-        <div className={"rounded-3xl flex flex-col border-4 w-full h-96 p-4 cursor-pointer " +
+        <div className={"rounded-3xl flex flex-col border-4 w-full h-[28rem] p-4 cursor-pointer " +
             (onHover ? "bg-gradient-to-b from-amber-500 to-amber-600 text-white" : "")
         } onClick={onClick} onMouseOver={() => onMouseOver(true)} onMouseOut={() => onMouseOver(false)}>
             <div className={"w-full flex justify-center items-center"}>
-                <img draggable="false" src={BASE_IMAGE} alt={""} className={"w-24 h-24 rounded-full"}/>
+                <img draggable="false" src={BASE_IMAGE} alt={""} className={"w-28 h-28 rounded-full mb-4"}/>
                 <div className={"flex flex-col flex-1"}>
                 </div>
             </div>
             <div className={"text-sm"}>{CovertDate(question.createdAt)}</div>
-            <div className={"font-bold text-2xl break-all w-full flex-1"}>{question.title}</div>
-            <div>
-
-            </div>
+            <div className={"font-bold text-3xl break-all w-full flex-1"}>{question.title}</div>
             <HashTagList tags={question.hashtags}/>
         </div>
     );

@@ -11,7 +11,7 @@ function NavBar() {
     let {isLogin} = useSelector(state => state.UserState);
 
     return (
-        <div className={"m-8 ml-[2%] mr-[2%]"}>
+        <div className={"m-12 mx-[2%]"}>
             <div className={"relative h-20 flex w-full justify-center"}>
                 <QPLogo className={"absolute h-full left-0"}/>
                 <SearchBar className={"h-full"}/>

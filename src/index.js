@@ -14,6 +14,7 @@ import QuestionDetailPage from "./pages/QuestionDetailPage";
 import WidthController from "./components/widthController";
 import SearchPage from "./pages/SearchPage";
 import QuestionRegisterPage from "./pages/QuestionRegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +27,7 @@ root.render(
                     <Route path={"/search"} element={<SearchPage/>}/>
                     <Route path={"/questions/:questionId"} element={<QuestionDetailPage/>}/>
                     <Route path={"/register"} element={<QuestionRegisterPage/>}/>
+                    <Route path={"/profile"} element={<ProfilePage/>}/>
                     <Route path={"/app"} element={<App/>}/>
                 </Route>
                 <Route exact path="/login" element={<LoginPage/>}/>
