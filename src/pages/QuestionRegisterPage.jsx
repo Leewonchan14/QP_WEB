@@ -3,6 +3,7 @@ import GrayBox from "../components/GrayBox";
 import Badges from "../components/Badges";
 import ChatBox from "../assets/ChatBox.png"
 import Check from "../assets/Check.png"
+import useQuestionRegisterInput from "../hooks/useQuestionRegisterInput";
 
 function BoldText({text}) {
     return (
@@ -11,56 +12,81 @@ function BoldText({text}) {
 }
 
 function QuestionRegisterPage(props) {
-    const [inputs, setInputs] = useState({
-        title: "현재 아르테미스 계획은 어떻게 되어 가고 있나요?현재 아르테미스 계획은 어떻게 되어 가고 았나요 현재 아르테",
-        content: "현재 아르테미스 계획은 어떻게 되어 가고 있나요?현재 아르테미스 계획은 어떻게 되어 가고 았나요 현재 아르테",
-    })
 
-    const [badges, setBadges] = useState([
-        "햄버거",
-        "세종대왕",
-        "장영실",
-    ]);
+    let {
+        inputs,
+        hashTags,
+        validated,
+        isValid,
+        onContentChange,
+        onTitleChange,
+        onHashTagChange,
+        onCheckChange,
+        onChildChange,
+        addHashTag,
+        deleteHashTag,
+    } = useQuestionRegisterInput();
 
-    let [isChild, setIsChild] = useState(false);
-    const [isCheck, setIsCheck] = useState(false);
-
-    const check = () => {
-        setIsCheck(state => !state);
-        console.log(isCheck);
-    }
+    let {
+        title,
+        content,
+        hashtag,
+        isChild,
+        isCheck
+    } = inputs;
 
     return (
         <>
+            {/* 질문 제목 */}
             <BoldText text={"제목"}/>
-            <div className={"mb-2"}>
-                <GrayBox>
-                    <div className={"p-4"}>
-                        <textarea className={"text-xl resize-none w-full h-14 outline-none text-pretty"}
-                                  value={inputs.title}/>
-                    </div>
-                </GrayBox>
+            <GrayBox>
+                <div className={"p-4"}>
+                        <textarea
+                            onChange={onTitleChange}
+                            className={"text-xl resize-none w-full h-14 outline-none text-pretty"}
+                            value={title}/>
+                </div>
+            </GrayBox>
+            {/* 질문 제목 유효성 */}
+            <div className={"mt-2 mb-10"}>
+                <span className={validated.isTitleMinValidate ? "text-green-600" : "text-red-600"}>최소 5자</span>
+                {" / "}
+                <span className={validated.isTitleMaxValidate ? "text-green-600" : "text-red-600"}>최대 60자</span>
+                {" / "}
+                <span
+                    className={validated.isTitleQuestionValidate ? "text-green-600" : "text-red-600"}>?(물음표)로 끝내기</span>
             </div>
-            <div className={"mb-10"}>최소 5자 / 최대 60자 / ?(물음표)로 끝내기</div>
+
+            {/* 질문 내용 */}
             <BoldText text={"본문"}/>
-            <div className={"mb-2"}>
-                <GrayBox>
-                    <div className={"p-4"}>
-                        <textarea className={"text-xl resize-none w-full h-40 outline-none text-pretty"}
-                                  value={inputs.content}/>
-                    </div>
-                </GrayBox>
+            <GrayBox>
+                <div className={"p-4"}>
+                        <textarea
+                            onChange={onContentChange}
+                            className={"text-xl resize-none w-full h-40 outline-none text-pretty"}
+                            value={content}/>
+                </div>
+            </GrayBox>
+
+            {/* 질문 내용 유효성 */}
+            <div className={"mt-2 mb-10"}>
+                <span className={validated.isContentMinValidate ? "text-green-600" : "text-red-600"}>최소 10자</span>
+                {" / "}
+                <span className={validated.isContentMaxValidate ? "text-green-600" : "text-red-600"}>최대 300자</span>
             </div>
-            <div className={"mb-10"}>최소 5자 / 최대 60자 / ?(물음표)로 끝내기</div>
+
+            {/* 해시태그 */}
             <BoldText text={"해시태그(최대 3개)"}/>
-            <input type="text" className={"mb-8 block outline-none border-b-2 border-b-black text-xl w-2/5"}/>
+            <input
+                onChange={onHashTagChange}
+                onKeyDown={addHashTag}
+                value={hashtag}
+                type="text" className={"mb-8 block outline-none border-b-2 border-b-black text-xl w-2/5"}/>
             <div className={"mb-20"}>
-                <Badges badges={badges}/>
+                <Badges badges={hashTags} onClick={deleteHashTag}/>
             </div>
             <BoldText text={"난이도"}/>
-            <div className={"inline-block cursor-pointer mb-2"} onClick={() => {
-                setIsChild(state => !state);
-            }}>
+            <div className={"inline-block cursor-pointer mb-2"} onClick={onChildChange}>
                 <GrayBox
                     className={"rounded-[20px] "
                         + (isChild ? "bg-amber-600 text-white !border-amber-600 " : "")}>
@@ -89,7 +115,7 @@ function QuestionRegisterPage(props) {
             </div>
             <div className={"flex items-center w-full p-4 mb-12"}>
                 <div
-                    onClick={() => check()}
+                    onClick={onCheckChange}
                     className={"rounded-sm border-2 w-6 h-6 mr-4 flex justify-center items-center "
                         + (isCheck ? "bg-amber-600 !border-amber-600" : "")
                     }>
@@ -98,7 +124,8 @@ function QuestionRegisterPage(props) {
                 <div className={"inline-block font-bold"}>유의사항을 모두 읽고 동의합니다.</div>
             </div>
             <div className={"flex justify-center"}>
-                <div className={"inline-block border-4 rounded-3xl px-16 py-3 font-bold text-xl "}>등록</div>
+                <div className={"inline-block border-4 rounded-3xl px-16 py-3 font-bold text-xl " +
+                    (isValid ? "bg-amber-600 text-white border-amber-600 cursor-pointer" : "")}>등록</div>
             </div>
             <div className={"h-10"}></div>
         </>
