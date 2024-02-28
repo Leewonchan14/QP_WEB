@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import HashTagList from "../components/HashTag";
 import WhiteShadowBox from "../components/WhiteShadowBox";
-import MenuIcon from "../assets/menuIcon.png";
 import AlarmIcon from "../assets/AlarmIcon.png";
 import AnswerList from "../components/AnswerComp";
 import {BASE_IMAGE} from "../contants/BASE_IMAGE";
 import NextArrow from "../assets/nextArrow.png"
+import MenuIconComp from "../components/MenuBar";
 
 function AdjacentQuestion({adjacent}) {
 
@@ -139,7 +139,7 @@ function QuestionDetailPage({user}) {
         setAdjacent(state => {
             return {
                 ...state,
-                laterQuestion : {
+                laterQuestion: {
                     ...state.laterQuestion,
                     questionId: Number(questionId) + 1,
                 },
@@ -160,7 +160,7 @@ function QuestionDetailPage({user}) {
                     <div
                         className={"relative w-full flex justify-center"}>
                         <div className={"absolute right-6 top-0 text-amber-600"}>어린이</div>
-                        <img src={MenuIcon} className={"absolute right-0 top-0 h-5 cursor-pointer"}/>
+                        <MenuIconComp/>
                         <img src={BASE_IMAGE} alt={""} className={"w-24 h-24 rounded-full mr-10"}/>
                         <div className={"flex flex-col flex-1 h-24"}>
                             <HashTagList tags={question.hashtags}/>

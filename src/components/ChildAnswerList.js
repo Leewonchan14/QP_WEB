@@ -1,8 +1,7 @@
 import React from 'react';
-import ChatAndLike from "./ChatAndLike";
 import WhiteShadowBox from "./WhiteShadowBox";
-import MenuIcon from "../assets/menuIcon.png";
 import {BASE_IMAGE} from "../contants/BASE_IMAGE";
+import MenuIconComp from "./MenuBar";
 
 function ChildAnswerComp({answer}) {
 
@@ -13,7 +12,7 @@ function ChildAnswerComp({answer}) {
                 <img src={BASE_IMAGE} alt={""} className={"w-24 h-24 rounded-full mr-10"}/>
                 <div
                     className={"flex items-center font-bold text-xl break-all w-full flex-1"}>{answer.nickname}</div>
-                <img src={MenuIcon} alt={"메뉴"} className={"absolute right-0 top-0 h-5 cursor-pointer"}/>
+                <MenuIconComp />
             </div>
             <div className={"mt-4"}>{answer.content}</div>
         </WhiteShadowBox>

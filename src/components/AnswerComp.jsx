@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import WhiteShadowBox from "./WhiteShadowBox";
-import ChatIcon from "../assets/ChatIcon.png";
-import LikeIcon from "../assets/LikeIcon.png";
 import ChatAndLike from "./ChatAndLike";
 import ChildAnswerList from "./ChildAnswerList";
-import MenuIcon from "../assets/menuIcon.png";
 import {BASE_IMAGE} from "../contants/BASE_IMAGE";
+import MenuIconComp from "./MenuBar";
 
 function AnswerList({answerState}) {
     let {
@@ -57,7 +55,7 @@ function AnswerComp({answer}) {
                 <img src={BASE_IMAGE} alt={""} className={"w-24 h-24 rounded-full mr-10"}/>
                 <div
                     className={"flex items-center font-bold text-xl break-all w-full flex-1"}>{answer.nickname}</div>
-                <img src={MenuIcon} alt={"메뉴"} className={"absolute right-0 top-0 h-5 cursor-pointer"}/>
+                <MenuIconComp />
             </div>
             <div className={"mt-4"}>{answer.content}</div>
             <div className={"relative w-full h-7 mt-4"}>
