@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import WhiteShadowBox from "./WhiteShadowBox";
+import WhiteShadowBox from "../WhiteShadowBox";
 import ChatAndLike from "./ChatAndLike";
 import ChildAnswerList from "./ChildAnswerList";
-import {BASE_IMAGE} from "../contants/BASE_IMAGE";
-import MenuIconComp from "./MenuBar";
+import {BASE_IMAGE} from "../../contants/BASE_IMAGE";
+import MenuIconComp from "../MenuBar";
+import AnswerInputComp from "./AnswerInputComp";
 
 function AnswerList({answerState}) {
     let {
@@ -25,6 +26,8 @@ function AnswerList({answerState}) {
 }
 
 function AnswerComp({answer}) {
+
+    const [isInputOpen, setIsInputOpen] = useState(false)
 
     const [childAnswers, setChildAnswers] = useState({
         "childAnswerList": [
@@ -55,13 +58,14 @@ function AnswerComp({answer}) {
                 <img src={BASE_IMAGE} alt={""} className={"w-24 h-24 rounded-full mr-10"}/>
                 <div
                     className={"flex items-center font-bold text-xl break-all w-full flex-1"}>{answer.nickname}</div>
-                <MenuIconComp />
+                <MenuIconComp/>
             </div>
             <div className={"mt-4"}>{answer.content}</div>
             <div className={"relative w-full h-7 mt-4"}>
-                <ChatAndLike chat={3} like={0} />
+                <ChatAndLike chat={3} like={0} setIsInputOpen={setIsInputOpen}/>
             </div>
             <ChildAnswerList answers={childAnswers}/>
+            <AnswerInputComp isInputOpen={isInputOpen} setIsInputOpen={setIsInputOpen}/>
         </WhiteShadowBox>
     );
 }

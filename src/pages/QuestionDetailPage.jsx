@@ -3,10 +3,11 @@ import {useNavigate, useParams} from "react-router-dom";
 import HashTagList from "../components/HashTag";
 import WhiteShadowBox from "../components/WhiteShadowBox";
 import AlarmIcon from "../assets/AlarmIcon.png";
-import AnswerList from "../components/AnswerComp";
+import AnswerList from "../components/Question/AnswerComp";
 import {BASE_IMAGE} from "../contants/BASE_IMAGE";
 import NextArrow from "../assets/nextArrow.png"
 import MenuIconComp from "../components/MenuBar";
+import AnswerInputComp from "../components/Question/AnswerInputComp";
 
 function AdjacentQuestion({adjacent}) {
 
@@ -40,6 +41,8 @@ function AdjacentQuestion({adjacent}) {
 function QuestionDetailPage({user}) {
 
     let {questionId} = useParams();
+
+    const [isInputOpen, setIsInputOpen] = useState(false)
 
     const [question, setQuestion] = useState({
         "questionId": 0,
@@ -104,6 +107,13 @@ function QuestionDetailPage({user}) {
             "title": "짜장면이 싫다고 하셨어"
         }
     })
+
+    const onClick = () => {
+        setIsInputOpen(false);
+        setTimeout(() => {
+            setIsInputOpen(true)
+        }, 0);
+    }
 
     const fetchQuestion = async () => {
         // let response = await QuestionController.findById({questionId});
@@ -176,9 +186,12 @@ function QuestionDetailPage({user}) {
                 <div className={"font-bold text-white text-center mt-4"}>3명의 전문가가 답변을 했어요</div>
                 <div className={"border-2 border-white mt-4"}/>
                 <div className={"w-full flex justify-center mt-4"}>
-                    <p className={"shadow-[inset_0px_0px_12px_rgba(0,0,0,0.4)] w-1/5 h-12 bg-white flex justify-center items-center font-bold text-amber-600 rounded-full"}>답변하기</p>
+                    <p
+                        onClick={onClick}
+                        className={"cursor-pointer shadow-[inset_0px_0px_12px_rgba(0,0,0,0.4)] w-1/5 h-12 bg-white flex justify-center items-center font-bold text-amber-600 rounded-full"}>답변하기</p>
                 </div>
                 <AnswerList answerState={answers}/>
+                <AnswerInputComp isInputOpen={isInputOpen} setIsInputOpen={setIsInputOpen}/>
             </div>
         </>
     );
