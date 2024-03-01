@@ -3,6 +3,8 @@ import CoinIcon from "../assets/CoinIcon.png";
 import {BASE_IMAGE} from "../contants/BASE_IMAGE";
 import AlarmOn from "../assets/AlarmOnIcon.png";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {LOGOUT} from "../reducers/UserState";
 
 function MyPageButton(props) {
     const [user, setUser] = useState({
@@ -16,6 +18,11 @@ function MyPageButton(props) {
     })
 
     let navigate = useNavigate();
+    let dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch({type: LOGOUT, navigate});
+    }
 
     const goProfile = () => {
         navigate("/profile");
@@ -29,7 +36,7 @@ function MyPageButton(props) {
 
                 {/*로그아웃 버튼*/}
                 <div className={"w-full flex justify-end text-white text-sm mb-4"}>
-                    <span className={"cursor-pointer"}>로그아웃</span>
+                    <span className={"cursor-pointer"} onClick={logout}>로그아웃</span>
                 </div>
 
                 {/*프로필 이미지*/}

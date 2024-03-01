@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import GrayBox from "../components/GrayBox";
 import Badges from "../components/Badges";
 import ChatBox from "../assets/ChatBox.png"

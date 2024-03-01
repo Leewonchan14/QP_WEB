@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {INITIALIZE, SEARCH} from "../reducers/SearchModalState";
+import React from 'react';
+import {useDispatch} from "react-redux";
+import {INITIALIZE} from "../reducers/SearchModalState";
 import QuestionGridList from "../components/QuestionComp";
 import useParamFetch from "../hooks/useParamFetch";
 import useFetchQuestion from "../hooks/useFetchQuestion";

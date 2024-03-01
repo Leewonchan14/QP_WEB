@@ -1,12 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../index.css';
 import QuestionGridList from "../components/QuestionComp";
 import useFetchQuestion from "../hooks/useFetchQuestion";
+import useAutoLogin from "../hooks/useAutoLogin";
 
 function HomePage(props) {
 
-    let [questionState, ] = useFetchQuestion({})
+    useAutoLogin();
 
+    let [questionState,] = useFetchQuestion({})
 
     return (
         <div className={"relative w-full"}>

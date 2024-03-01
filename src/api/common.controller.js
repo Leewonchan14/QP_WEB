@@ -9,38 +9,6 @@ export class Api {
         this.axiosInstance = axios.create({
             baseURL: this.base_url,
         });
-
-        // error 인터 셉터 처리
-        // this.axiosInstance.interceptors.response.use(
-        //     response => ({isSuccess: true, ...response}),
-        //     (error) => {
-        //         error = error.toJSON()
-        //         let message= ""
-        //         switch (error.status){
-        //             case 400:
-        //                 message = "잘못된 요청입니다.";
-        //                 break;
-        //             case 404:
-        //                 message = "요청한 자료가 존재하지 않습니다."
-        //                 break;
-        //             case 500:
-        //             case 502:
-        //             case 503:
-        //             case 504:
-        //                 message = "서버측 오류입니다."
-        //                 break;
-        //             default:
-        //                 message = `에러 발생 : ${error.message}`;
-        //                 break;
-        //         }
-        //         return Promise.resolve({
-        //             isSuccess: false,
-        //             message: message,
-        //             status : error.status,
-        //             data: []
-        //         });
-        //     }
-        // );
     }
 
     async sendRequest(options) {
@@ -49,6 +17,8 @@ export class Api {
         const config = {
             headers: {
                 'Content-Type': content_type,
+                'accessToken' : localStorage.getItem('accessToken'),
+                'refreshToken' : localStorage.getItem('refreshToken'),
             },
         };
 
